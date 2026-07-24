@@ -180,8 +180,9 @@ max_indexes = 5
 [auth]
 enabled = true
 # The base URL of your website. Used as an allow-list for redirects and for constructing URLs used
-# in emails. Local-dev value — production site_url/redirect URLs are managed in
-# the Supabase dashboard, not this file.
+# in emails. Local-dev value — production site_url/redirect URLs live in the
+# [remotes.production] override at the bottom of this file and are applied by
+# `supabase config push` (which auto-confirms when stdin is not a TTY — beware).
 site_url = "http://localhost:5173"
 # The public URL that Auth serves on. Defaults to the API external URL with `/auth/v1` appended.
 # external_url = ""
@@ -466,3 +467,17 @@ s3_secret_key = "env(S3_SECRET_KEY)"
 # declarative_schema_path = "./database"
 # JSON string passed through to pg-delta SQL formatting.
 # format_options = "{\"keywordCase\":\"upper\",\"indent\":2,\"maxWidth\":80,\"commaStyle\":\"trailing\"}"
+
+# Production overrides applied by `supabase config push` to the linked project.
+# The [auth] section above holds LOCAL-DEV values; these are the env-specific
+# production URLs (web app + rinciku:// deep links) that must survive a push.
+[remotes.production]
+project_id = "uyxkzkvomcavxxqkreqq"
+
+[remotes.production.auth]
+site_url = "https://app.rinciku.com"
+additional_redirect_urls = [
+  "https://app.rinciku.com/**",
+  "rinciku://auth/callback",
+  "rinciku://reset-password",
+]
