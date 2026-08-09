@@ -9,11 +9,17 @@ export const en: Copy = {
   },
   nav: {
     tryFree: 'Try free',
+    getApp: 'Get the app',
     switchLang: 'ID',
     skipToContent: 'Skip to content',
     features: 'Features',
     how: 'How it works',
     faq: 'FAQ',
+  },
+  appStore: {
+    badgeSmall: 'Download on the',
+    badgeLarge: 'App Store',
+    ariaLabel: 'Download Rinciku on the App Store',
   },
   hero: {
     badge: 'AI purchase consultation',
@@ -22,7 +28,8 @@ export const en: Copy = {
     subhead:
       'Rinciku is an AI money companion for people with mixed IDR/USD income and variable expenses. Log spending in seconds, then ask the AI whether a purchase fits — grounded in your real budget, not generic advice.',
     cta: 'Try Rinciku free',
-    ctaNote: 'Free to start · Web today, iOS & Android coming',
+    ctaNote: 'Free to start · Now on iPhone · Android coming soon',
+    ctaNoteIos: 'Free to start · Or keep using it in your browser',
     screenshotAlt:
       'Rinciku AI chat answering how much money is left this month, with essentials still to cover and days remaining',
   },
@@ -193,7 +200,7 @@ export const en: Copy = {
       },
       {
         q: 'Is there a mobile app?',
-        a: 'Rinciku runs in your browser today and works great on mobile. Native iOS and Android apps — sharing the same brain — are on the way.',
+        a: 'Yes — the iPhone app is live on the App Store, and it’s the best way to use Rinciku on the go. Android is in the works. Rinciku also runs in any browser, and your data is the same everywhere you sign in.',
       },
       {
         q: 'How is the AI’s advice different?',
@@ -205,7 +212,8 @@ export const en: Copy = {
     heading: 'Start deciding with confidence',
     body: 'Set up your budget in minutes and let the AI do the math — so you always know where you stand.',
     button: 'Try Rinciku free',
-    note: 'Free to start · No credit card',
+    note: 'Free to start · No credit card · Now on iPhone',
+    noteIos: 'Free to start · No credit card',
   },
   footer: {
     tagline: 'Your AI money companion for mixed-currency life.',

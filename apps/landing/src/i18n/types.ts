@@ -39,6 +39,8 @@ export interface Copy {
   };
   nav: {
     tryFree: string;
+    /** Replaces `tryFree` for iOS visitors — the nav CTA points at the App Store. */
+    getApp: string;
     /** Label shown on the language toggle for the *other* locale. */
     switchLang: string;
     /** Skip-to-content link text (keyboard/screen-reader accessibility). */
@@ -48,6 +50,15 @@ export interface Copy {
     how: string;
     faq: string;
   };
+  /** Labels for the App Store download badge (used in the hero and final CTA). */
+  appStore: {
+    /** Small line above the store name, e.g. "Download on the". */
+    badgeSmall: string;
+    /** The store name itself — stays "App Store" in every locale. */
+    badgeLarge: string;
+    /** Accessible name for the badge link. */
+    ariaLabel: string;
+  };
   hero: {
     badge: string;
     headline: string;
@@ -55,6 +66,8 @@ export interface Copy {
     subhead: string;
     cta: string;
     ctaNote: string;
+    /** Replaces `ctaNote` for iOS visitors, who are steered to the app instead. */
+    ctaNoteIos: string;
     screenshotAlt: string;
   };
   problem: {
@@ -96,6 +109,8 @@ export interface Copy {
     body: string;
     button: string;
     note: string;
+    /** Replaces `note` for iOS visitors. */
+    noteIos: string;
   };
   footer: {
     tagline: string;

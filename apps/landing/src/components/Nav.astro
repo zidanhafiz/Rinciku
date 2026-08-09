@@ -2,7 +2,7 @@
 import Logo from './Logo.astro';
 import Button from './Button.astro';
 import type { Copy, Locale } from '../i18n/types';
-import { otherLocale, localeHref, signUpUrl } from '../i18n/utils';
+import { appStoreUrl, otherLocale, localeHref, signUpUrl } from '../i18n/utils';
 
 interface Props {
   locale: Locale;
@@ -47,7 +47,19 @@ const altHref = localeHref(otherLocale(locale));
         </svg>
         {copy.nav.switchLang}
       </a>
-      <Button href={signUpUrl}>{copy.nav.tryFree}</Button>
+      {
+        /*
+        The nav CTA is the loudest button on a phone screen, so on iOS it has to
+        point at the App Store too — otherwise it quietly undoes the hero's swap.
+        Both render and CSS picks one, since the href differs (see Hero.astro).
+      */
+      }
+      <span class='cta cta-web'>
+        <Button href={signUpUrl}>{copy.nav.tryFree}</Button>
+      </span>
+      <span class='cta cta-app'>
+        <Button href={appStoreUrl}>{copy.nav.getApp}</Button>
+      </span>
     </nav>
   </div>
 </header>
@@ -75,6 +87,18 @@ const altHref = localeHref(otherLocale(locale));
   }
   .brand {
     text-decoration: none;
+  }
+  .cta {
+    display: inline-flex;
+  }
+  .cta-app {
+    display: none;
+  }
+  :global(html[data-platform='ios']) .cta-web {
+    display: none;
+  }
+  :global(html[data-platform='ios']) .cta-app {
+    display: inline-flex;
   }
   .anchors {
     display: none;

@@ -3,6 +3,12 @@
     "name": "Rinciku",
     "tagline": "Keuangan pribadi"
   },
+  "appBanner": {
+    "title": "Rinciku untuk iPhone sudah ada",
+    "subtitle": "Catat lebih cepat, scan struk, dan AI-nya ada di kantongmu.",
+    "action": "Ambil aplikasinya",
+    "dismiss": "Tutup"
+  },
   "nav": {
     "groups": {
       "overview": "Ringkasan",

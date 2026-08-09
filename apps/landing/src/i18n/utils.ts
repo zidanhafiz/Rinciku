@@ -27,6 +27,15 @@ export const webAppUrl: string = (
 /** Where the "Try free" CTA sends visitors. */
 export const signUpUrl = `${webAppUrl}/sign-up`;
 
+/**
+ * App Store listing. The numeric ID is what the `apple-itunes-app` smart-banner
+ * meta tag needs; the URL is deliberately storefront-agnostic (no `/id/`, `/us/`
+ * segment) so Apple redirects each visitor to their own storefront.
+ * Android has no listing yet — when it ships, add `playStoreUrl` beside this.
+ */
+export const appStoreId = '6794289301';
+export const appStoreUrl = `https://apps.apple.com/app/id${appStoreId}`;
+
 /** Legal pages live on this site (store listings link to them). */
 export function privacyHref(locale: Locale): string {
   return locale === 'en' ? '/privacy/' : `/${locale}/privacy/`;

@@ -3,6 +3,12 @@
     "name": "Rinciku",
     "tagline": "Personal finance"
   },
+  "appBanner": {
+    "title": "Rinciku for iPhone is here",
+    "subtitle": "Faster logging, receipt scanning, and the AI in your pocket.",
+    "action": "Get the app",
+    "dismiss": "Dismiss"
+  },
   "nav": {
     "groups": {
       "overview": "Overview",

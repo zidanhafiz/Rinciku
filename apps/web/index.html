@@ -5,6 +5,12 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
+    <!--
+      Native "Smart App Banner" in Safari on iOS (flips to OPEN once installed).
+      Safari-only — the in-app banner in app-shell.tsx covers other iOS browsers.
+      App ID mirrors APP_STORE_ID in src/lib/platform.ts.
+    -->
+    <meta name="apple-itunes-app" content="app-id=6794289301" />
     <title>Rinciku</title>
   </head>
   <body>

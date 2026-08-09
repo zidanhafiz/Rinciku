@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import AppStoreBadge from './AppStoreBadge.astro';
 import Button from './Button.astro';
 import aiChat from '../assets/screenshots/ai-chat.png';
 import type { Copy } from '../i18n/types';
@@ -24,10 +25,21 @@ const { hero } = copy;
       <span class='accent'>{hero.headlineAccent}</span>
     </h1>
     <p class='subhead'>{hero.subhead}</p>
+    <!--
+      Both CTAs always render; `data-platform="ios"` on <html> promotes the App
+      Store one and demotes the web one to a ghost. Non-iOS (and no-JS) keeps
+      the web app primary, since that's the only thing those visitors can use.
+    -->
     <div class='ctas'>
-      <Button href={signUpUrl} size='lg'>{hero.cta}</Button>
+      <div class='cta-slot cta-web'>
+        <Button href={signUpUrl} size='lg'>{hero.cta}</Button>
+      </div>
+      <div class='cta-slot cta-app'>
+        <AppStoreBadge copy={copy} />
+      </div>
     </div>
-    <p class='note'>{hero.ctaNote}</p>
+    <p class='note note-default'>{hero.ctaNote}</p>
+    <p class='note note-ios'>{hero.ctaNoteIos}</p>
 
     <div class='frame'>
       <div class='frame-bar' aria-hidden='true'>
@@ -123,12 +135,46 @@ const { hero } = copy;
     color: var(--color-muted-foreground);
   }
   .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
     margin-top: 1.75rem;
   }
   .note {
     margin-top: 0.875rem;
     font-size: 0.875rem;
     color: var(--color-muted-foreground);
+  }
+  /* iOS visitors get `.note-ios` instead; the swap happens below. */
+  .note-ios {
+    display: none;
+  }
+
+  /*
+    On iOS: App Store badge leads, the web CTA drops to a ghost so it reads as
+    the fallback rather than the main path. `:global()` on the <html> selector
+    keeps Astro from scoping an ancestor that lives outside this component.
+  */
+  :global(html[data-platform='ios']) .cta-app {
+    order: -1;
+  }
+  :global(html[data-platform='ios']) .note-default {
+    display: none;
+  }
+  :global(html[data-platform='ios']) .note-ios {
+    display: block;
+  }
+  :global(html[data-platform='ios']) .cta-web :global(.btn) {
+    background-color: transparent;
+    color: var(--color-foreground);
+    border: 1px solid var(--color-border);
+    box-shadow: none;
+  }
+  :global(html[data-platform='ios']) .cta-web :global(.btn:hover) {
+    background-color: var(--color-muted);
+    box-shadow: none;
   }
   .frame {
     margin: 3rem auto 0;

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import type { Copy, Locale } from '../i18n/types';
+import { appStoreId, appStoreUrl } from '../i18n/utils';
 
 interface Props {
   locale: Locale;
@@ -21,9 +22,10 @@ const structuredData = {
   '@type': 'SoftwareApplication',
   name: 'Rinciku',
   applicationCategory: 'FinanceApplication',
-  operatingSystem: 'Web',
+  operatingSystem: 'Web, iOS',
   description: meta.description,
   url: site.href,
+  installUrl: appStoreUrl,
   inLanguage: ['en', 'id'],
   offers: {
     '@type': 'Offer',
@@ -73,6 +75,30 @@ const structuredData = {
 
     <meta name='theme-color' content='#9ae600' />
     <meta name='generator' content={Astro.generator} />
+
+    <!--
+      Safari-on-iOS renders this as the native "Smart App Banner" at the top of
+      the page (and flips to OPEN once the app is installed). Safari only — the
+      CTA swap below is what reaches Chrome/Firefox on iOS.
+    -->
+    <meta name='apple-itunes-app' content={`app-id=${appStoreId}`} />
+
+    <!--
+      Stamp the platform on <html> before first paint so iOS visitors see the
+      App Store CTA promoted without a flash of the web-first layout. Inline and
+      synchronous on purpose: a bundled module would run too late. With JS off,
+      no attribute is set and the web-first default stands.
+    -->
+    <script is:inline>
+      (function () {
+        const ua = navigator.userAgent;
+        // iPadOS 13+ reports a Mac UA, so fall back to touch-point sniffing.
+        const isIOS =
+          /iPad|iPhone|iPod/.test(ua) ||
+          (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+        if (isIOS) document.documentElement.dataset.platform = 'ios';
+      })();
+    </script>
 
     <script
       type='application/ld+json'

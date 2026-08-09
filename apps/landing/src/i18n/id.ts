@@ -10,11 +10,17 @@ export const id: Copy = {
   },
   nav: {
     tryFree: 'Coba gratis',
+    getApp: 'Ambil aplikasi',
     switchLang: 'EN',
     skipToContent: 'Lewati ke konten',
     features: 'Fitur',
     how: 'Cara kerja',
     faq: 'FAQ',
+  },
+  appStore: {
+    badgeSmall: 'Unduh di',
+    badgeLarge: 'App Store',
+    ariaLabel: 'Unduh Rinciku di App Store',
   },
   hero: {
     badge: 'Konsultasi belanja dengan AI',
@@ -23,7 +29,8 @@ export const id: Copy = {
     subhead:
       'Rinciku adalah teman keuangan AI untuk kamu yang punya penghasilan campur IDR/USD dan pengeluaran naik-turun. Catat pengeluaran dalam hitungan detik, lalu tanya AI apakah sebuah pembelian masih masuk budget — berdasar kondisi keuanganmu yang sebenarnya, bukan saran umum.',
     cta: 'Coba Rinciku gratis',
-    ctaNote: 'Gratis untuk mulai · Web sekarang, iOS & Android menyusul',
+    ctaNote: 'Gratis untuk mulai · Sudah ada di iPhone · Android menyusul',
+    ctaNoteIos: 'Gratis untuk mulai · Atau tetap pakai lewat browser',
     screenshotAlt:
       'Chat AI Rinciku menjawab berapa uang tersisa bulan ini, dengan kebutuhan pokok yang masih harus ditutup dan sisa hari',
   },
@@ -194,7 +201,7 @@ export const id: Copy = {
       },
       {
         q: 'Apakah ada aplikasi mobile?',
-        a: 'Rinciku jalan di browser sekarang dan nyaman dipakai di HP. Aplikasi native iOS dan Android — dengan otak yang sama — sedang dalam perjalanan.',
+        a: 'Ada — aplikasi iPhone sudah tersedia di App Store, dan itu cara paling enak pakai Rinciku sehari-hari. Android sedang digarap. Rinciku juga tetap jalan di browser mana pun, dan datamu sama di semua perangkat.',
       },
       {
         q: 'Apa bedanya saran AI-nya?',
@@ -206,7 +213,8 @@ export const id: Copy = {
     heading: 'Mulai putuskan dengan percaya diri',
     body: 'Atur budget-mu dalam hitungan menit dan biar AI yang berhitung — jadi kamu selalu tahu posisimu.',
     button: 'Coba Rinciku gratis',
-    note: 'Gratis untuk mulai · Tanpa kartu kredit',
+    note: 'Gratis untuk mulai · Tanpa kartu kredit · Sudah ada di iPhone',
+    noteIos: 'Gratis untuk mulai · Tanpa kartu kredit',
   },
   footer: {
     tagline: 'Teman keuangan AI untuk hidup multi-mata uang.',

@@ -8,7 +8,9 @@ import {
   Tag,
   TrendingUp,
   Wallet,
+  X,
 } from 'lucide-react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink, Outlet, useMatch } from 'react-router';
 import {
@@ -17,6 +19,7 @@ import {
 } from '@/components/shared/account-menu';
 import { LogoMark } from '@/components/shared/logo';
 import { ThemeToggle } from '@/components/shared/theme-toggle';
+import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import {
   Sidebar,
@@ -35,6 +38,11 @@ import {
   SidebarRail,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
+import {
+  APP_STORE_URL,
+  dismissAppBanner,
+  shouldShowAppBanner,
+} from '@/lib/platform';
 
 interface NavItem {
   // i18n key under common:nav.items.*
@@ -89,6 +97,7 @@ export function AppShell() {
     <SidebarProvider defaultOpen>
       <AppSidebar />
       <SidebarInset className='h-svh overflow-hidden'>
+        <AppStoreBanner />
         <AppTopbar />
         <main className='flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-4 md:gap-6 md:p-6'>
           <Outlet />
@@ -184,6 +193,54 @@ function NavItem({ item }: { item: NavItem }) {
       </SidebarMenuButton>
       {item.badge ? <SidebarMenuBadge>{item.badge}</SidebarMenuBadge> : null}
     </SidebarMenuItem>
+  );
+}
+
+/**
+ * Points iOS browser users at the native app. Reaches the browsers Safari's
+ * `apple-itunes-app` smart banner can't (Chrome/Firefox on iOS), so the two
+ * overlap only in Safari — where iOS suppresses ours once dismissed anyway.
+ *
+ * Dismissal is permanent by design: the web app stays fully usable on mobile,
+ * and a nag that keeps coming back is worse than one that's ignored once.
+ */
+function AppStoreBanner() {
+  const { t } = useTranslation('common');
+  // Read once on mount — platform and dismissal don't change mid-session.
+  const [show, setShow] = useState(shouldShowAppBanner);
+
+  if (!show) return null;
+
+  return (
+    <div className='flex shrink-0 items-center gap-3 border-b bg-sidebar px-3 py-2'>
+      <LogoMark
+        aria-hidden
+        className='size-9! shrink-0 rounded-lg shadow-sm shadow-primary/30 ring-1 ring-primary/20'
+      />
+      <div className='min-w-0 flex-1'>
+        <p className='truncate text-sm font-medium'>{t('appBanner.title')}</p>
+        <p className='truncate text-xs text-muted-foreground'>
+          {t('appBanner.subtitle')}
+        </p>
+      </div>
+      <Button asChild size='sm' className='shrink-0'>
+        <a href={APP_STORE_URL} target='_blank' rel='noreferrer'>
+          {t('appBanner.action')}
+        </a>
+      </Button>
+      <Button
+        variant='ghost'
+        size='icon'
+        className='shrink-0 text-muted-foreground'
+        aria-label={t('appBanner.dismiss')}
+        onClick={() => {
+          dismissAppBanner();
+          setShow(false);
+        }}
+      >
+        <X />
+      </Button>
+    </div>
   );
 }
 

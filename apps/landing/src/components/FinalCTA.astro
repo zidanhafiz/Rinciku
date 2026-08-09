@@ -1,4 +1,5 @@
 ---
+import AppStoreBadge from './AppStoreBadge.astro';
 import Button from './Button.astro';
 import type { Copy } from '../i18n/types';
 import { signUpUrl } from '../i18n/utils';
@@ -15,10 +16,17 @@ const { cta } = copy;
     <div class='content'>
       <h2 class='title'>{cta.heading}</h2>
       <p class='body'>{cta.body}</p>
+      <!-- Same iOS-first swap as the hero — see Hero.astro for the rationale. -->
       <div class='btn-row'>
-        <Button href={signUpUrl} size='lg'>{cta.button}</Button>
+        <div class='cta-slot cta-web'>
+          <Button href={signUpUrl} size='lg'>{cta.button}</Button>
+        </div>
+        <div class='cta-slot cta-app'>
+          <AppStoreBadge copy={copy} />
+        </div>
       </div>
-      <p class='note'>{cta.note}</p>
+      <p class='note note-default'>{cta.note}</p>
+      <p class='note note-ios'>{cta.noteIos}</p>
     </div>
   </div>
 </section>
@@ -70,11 +78,39 @@ const { cta } = copy;
     color: var(--color-muted-foreground);
   }
   .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
     margin-top: 1.75rem;
   }
   .note {
     margin-top: 0.875rem;
     font-size: 0.875rem;
     color: var(--color-muted-foreground);
+  }
+  .note-ios {
+    display: none;
+  }
+
+  :global(html[data-platform='ios']) .cta-app {
+    order: -1;
+  }
+  :global(html[data-platform='ios']) .note-default {
+    display: none;
+  }
+  :global(html[data-platform='ios']) .note-ios {
+    display: block;
+  }
+  :global(html[data-platform='ios']) .cta-web :global(.btn) {
+    background-color: transparent;
+    color: var(--color-foreground);
+    border: 1px solid var(--color-border);
+    box-shadow: none;
+  }
+  :global(html[data-platform='ios']) .cta-web :global(.btn:hover) {
+    background-color: var(--color-muted);
+    box-shadow: none;
   }
 </style>
