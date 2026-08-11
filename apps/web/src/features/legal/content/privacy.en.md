@@ -44,7 +44,7 @@ We keep your data for as long as your account is active. When you delete your ac
 
 ## 7. Your rights
 
-Subject to applicable law, you have the right to access, correct, export, or delete your personal data, and to withdraw consent. You can delete your account and all of its data yourself at any time from Settings → Delete account. To exercise your other rights, or if you need help, contact us at hrofiyani@gmail.com.
+Subject to applicable law, you have the right to access, correct, export, or delete your personal data, and to withdraw consent. You can delete your account and all of its data yourself at any time from Settings → Delete account. To exercise your other rights, or if you need help, contact us at rinciku@katzeapps.com.
 
 ## 8. Children
 
@@ -60,4 +60,4 @@ We may update this Policy from time to time. When we do, we will revise the effe
 
 ## 11. Contact
 
-Questions about this Policy, or want to exercise your data rights? Contact us at hrofiyani@gmail.com.
+Questions about this Policy, or want to exercise your data rights? Contact us at rinciku@katzeapps.com.

@@ -12,7 +12,7 @@ Anda harus berusia minimal 18 tahun, atau usia dewasa menurut yurisdiksi Anda, u
 
 ## 3. Akun Anda
 
-Anda bertanggung jawab atas informasi yang Anda masukkan, atas keamanan kata sandi Anda, dan atas seluruh aktivitas pada akun Anda. Segera beri tahu kami di hrofiyani@gmail.com jika Anda menduga ada akses tanpa izin.
+Anda bertanggung jawab atas informasi yang Anda masukkan, atas keamanan kata sandi Anda, dan atas seluruh aktivitas pada akun Anda. Segera beri tahu kami di rinciku@katzeapps.com jika Anda menduga ada akses tanpa izin.
 
 ## 4. Panduan AI bukan nasihat keuangan
 
@@ -57,4 +57,4 @@ Kami dapat memperbarui Ketentuan ini dari waktu ke waktu. Bila kami melakukannya
 
 ## 13. Kontak
 
-Ada pertanyaan tentang Ketentuan ini? Hubungi kami di hrofiyani@gmail.com.
+Ada pertanyaan tentang Ketentuan ini? Hubungi kami di rinciku@katzeapps.com.

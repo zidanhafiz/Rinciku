@@ -1,18 +1,435 @@
-<h2>Reset your password</h2>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="supported-color-schemes" content="light dark" />
+    <title>Reset your Rinciku password</title>
+    <!--
+      Rinciku auth email — password recovery. Structure, tokens and caveats are
+      the same as confirmation.html; see the comment there before editing either
+      (keep the two in visual sync).
 
-<p>Enter this code in the app to choose a new password:</p>
-
-<p style="font-size: 28px; font-weight: bold; letter-spacing: 4px">
-  {{ .Token }}
-</p>
-
-<p>Or, if you're on the web, follow this link instead:</p>
-
-<p>
-  <a
-    href="{{ .SiteURL }}/reset-password?token_hash={{ .TokenHash }}&type=recovery"
-    >Reset password</a
+      The link uses the token_hash + verifyOtp flow (not the PKCE ?code= link),
+      so it still works when opened on a different device than the one that
+      requested the reset. Keep the URL in sync with apps/web's /reset-password
+      route.
+    -->
+    <style>
+      @media (prefers-color-scheme: dark) {
+        .rk-body {
+          background-color: #0a0a08 !important;
+        }
+        .rk-card {
+          background-color: #1d1d16 !important;
+          border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        .rk-ink {
+          color: #fbfbf9 !important;
+        }
+        .rk-muted {
+          color: #abab9c !important;
+        }
+        .rk-panel {
+          background-color: #2b2b22 !important;
+          border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        .rk-btn {
+          background-color: #7ccf00 !important;
+        }
+        .rk-rule {
+          background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+      }
+      @media only screen and (max-width: 600px) {
+        .rk-pad {
+          padding: 28px 22px !important;
+        }
+        .rk-code {
+          font-size: 30px !important;
+          letter-spacing: 6px !important;
+          text-indent: 6px !important;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="rk-body"
+    style="
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      background-color: #f2f2ea;
+      -webkit-font-smoothing: antialiased;
+    "
   >
-</p>
+    <div
+      style="
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        mso-hide: all;
+      "
+    >
+      Your Rinciku password reset code is {{ .Token }} — it expires in 60
+      minutes.
+      &#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;
+    </div>
 
-<p>If you didn't request this, you can safely ignore this email.</p>
+    <table
+      role="presentation"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
+      class="rk-body"
+      style="background-color: #f2f2ea"
+    >
+      <tr>
+        <td align="center" style="padding: 40px 16px">
+          <table
+            role="presentation"
+            width="100%"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+            style="max-width: 560px"
+          >
+            <!-- Card -->
+            <tr>
+              <td
+                class="rk-card"
+                style="
+                  background-color: #ffffff;
+                  border: 1px solid #e8e8e3;
+                  border-radius: 20px;
+                "
+              >
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                >
+                  <tr>
+                    <td class="rk-pad" style="padding: 36px 40px">
+                      <!-- Brand -->
+                      <table
+                        role="presentation"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td style="padding-right: 12px" valign="middle">
+                            <img
+                              src="https://rinciku.com/icon-192.png"
+                              width="44"
+                              height="44"
+                              alt="Rinciku"
+                              style="
+                                display: block;
+                                width: 44px;
+                                height: 44px;
+                                border: 0;
+                                border-radius: 12px;
+                              "
+                            />
+                          </td>
+                          <td valign="middle">
+                            <span
+                              class="rk-ink"
+                              style="
+                                font-family:
+                                  -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                                  Roboto, Helvetica, Arial, sans-serif;
+                                font-size: 19px;
+                                font-weight: 700;
+                                letter-spacing: -0.2px;
+                                color: #0c0c09;
+                              "
+                              >rinciku<span style="color: #9ae600"
+                                >.</span
+                              ></span
+                            >
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Heading -->
+                      <h1
+                        class="rk-ink"
+                        style="
+                          margin: 28px 0 0;
+                          font-family:
+                            -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                            Roboto, Helvetica, Arial, sans-serif;
+                          font-size: 24px;
+                          line-height: 32px;
+                          font-weight: 700;
+                          letter-spacing: -0.4px;
+                          color: #0c0c09;
+                        "
+                      >
+                        Reset your password
+                      </h1>
+
+                      <p
+                        class="rk-muted"
+                        style="
+                          margin: 10px 0 0;
+                          font-family:
+                            -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                            Roboto, Helvetica, Arial, sans-serif;
+                          font-size: 15px;
+                          line-height: 24px;
+                          color: #7c7c67;
+                        "
+                      >
+                        Enter this code in the app to choose a new password.
+                      </p>
+
+                      <!-- Code -->
+                      <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                        style="margin-top: 24px"
+                      >
+                        <tr>
+                          <td
+                            class="rk-panel"
+                            align="center"
+                            style="
+                              background-color: #f4f4f0;
+                              border: 1px solid #e8e8e3;
+                              border-radius: 14px;
+                              padding: 22px 16px;
+                            "
+                          >
+                            <div
+                              class="rk-code rk-ink"
+                              style="
+                                font-family:
+                                  ui-monospace, SFMono-Regular, Menlo, Consolas,
+                                  'Courier New', monospace;
+                                font-size: 34px;
+                                line-height: 40px;
+                                font-weight: 700;
+                                letter-spacing: 8px;
+                                text-indent: 8px;
+                                color: #0c0c09;
+                              "
+                            >
+                              {{ .Token }}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <p
+                        class="rk-muted"
+                        style="
+                          margin: 14px 0 0;
+                          font-family:
+                            -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                            Roboto, Helvetica, Arial, sans-serif;
+                          font-size: 13px;
+                          line-height: 20px;
+                          color: #7c7c67;
+                        "
+                      >
+                        This code expires in 60 minutes and can only be used
+                        once.
+                      </p>
+
+                      <!-- Divider -->
+                      <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                        style="margin: 28px 0"
+                      >
+                        <tr>
+                          <td
+                            class="rk-rule"
+                            height="1"
+                            style="
+                              background-color: #e8e8e3;
+                              font-size: 0;
+                              line-height: 0;
+                            "
+                          >
+                            &nbsp;
+                          </td>
+                        </tr>
+                      </table>
+
+                      <p
+                        class="rk-muted"
+                        style="
+                          margin: 0 0 20px;
+                          font-family:
+                            -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                            Roboto, Helvetica, Arial, sans-serif;
+                          font-size: 15px;
+                          line-height: 24px;
+                          color: #7c7c67;
+                        "
+                      >
+                        On the web? Use this button instead.
+                      </p>
+
+                      <!-- Button -->
+                      <table
+                        role="presentation"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td>
+                            <!--[if mso]>
+                              <v:roundrect
+                                xmlns:v="urn:schemas-microsoft-com:vml"
+                                xmlns:w="urn:schemas-microsoft-com:office:word"
+                                href="{{ .SiteURL }}/reset-password?token_hash={{ .TokenHash }}&type=recovery"
+                                style="
+                                  height: 48px;
+                                  v-text-anchor: middle;
+                                  width: 220px;
+                                "
+                                arcsize="50%"
+                                strokecolor="#9AE600"
+                                fillcolor="#9AE600"
+                              >
+                                <w:anchorlock />
+                                <center
+                                  style="
+                                    color: #35530e;
+                                    font-family: Arial, sans-serif;
+                                    font-size: 16px;
+                                    font-weight: bold;
+                                  "
+                                >
+                                  Reset my password
+                                </center>
+                              </v:roundrect>
+                            <![endif]-->
+                            <!--[if !mso]><!-- -->
+                            <a
+                              class="rk-btn"
+                              href="{{ .SiteURL }}/reset-password?token_hash={{ .TokenHash }}&type=recovery"
+                              style="
+                                display: inline-block;
+                                background-color: #9ae600;
+                                color: #35530e;
+                                font-family:
+                                  -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                                  Roboto, Helvetica, Arial, sans-serif;
+                                font-size: 16px;
+                                line-height: 20px;
+                                font-weight: 700;
+                                text-decoration: none;
+                                padding: 14px 30px;
+                                border-radius: 999px;
+                                mso-padding-alt: 0;
+                              "
+                              >Reset my password</a
+                            >
+                            <!--<![endif]-->
+                          </td>
+                        </tr>
+                      </table>
+
+                      <p
+                        class="rk-muted"
+                        style="
+                          margin: 20px 0 0;
+                          font-family:
+                            -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                            Roboto, Helvetica, Arial, sans-serif;
+                          font-size: 12px;
+                          line-height: 20px;
+                          color: #7c7c67;
+                          word-break: break-all;
+                        "
+                      >
+                        Or paste this address into your browser:<br />
+                        <!-- prettier-ignore -->
+                        <span class="rk-muted" style="color: #7c7c67">{{ .SiteURL }}/reset-password?token_hash={{ .TokenHash }}&type=recovery</span>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td style="padding: 24px 12px 0">
+                <p
+                  class="rk-muted"
+                  style="
+                    margin: 0 0 10px;
+                    font-family:
+                      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                      Helvetica, Arial, sans-serif;
+                    font-size: 13px;
+                    line-height: 20px;
+                    color: #7c7c67;
+                  "
+                >
+                  If you didn't ask to reset your password, you can safely
+                  ignore this email — your password stays unchanged. If this
+                  keeps happening, let us know.
+                </p>
+                <p
+                  class="rk-muted"
+                  style="
+                    margin: 0;
+                    font-family:
+                      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                      Helvetica, Arial, sans-serif;
+                    font-size: 13px;
+                    line-height: 20px;
+                    color: #7c7c67;
+                  "
+                >
+                  <a
+                    href="mailto:rinciku@katzeapps.com"
+                    class="rk-muted"
+                    style="color: #7c7c67; text-decoration: underline"
+                    >rinciku@katzeapps.com</a
+                  >
+                  &nbsp;·&nbsp;
+                  <a
+                    href="https://rinciku.com/privacy/"
+                    class="rk-muted"
+                    style="color: #7c7c67; text-decoration: underline"
+                    >Privacy</a
+                  >
+                  &nbsp;·&nbsp;
+                  <a
+                    href="https://rinciku.com/terms/"
+                    class="rk-muted"
+                    style="color: #7c7c67; text-decoration: underline"
+                    >Terms</a
+                  >
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

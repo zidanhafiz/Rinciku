@@ -12,7 +12,7 @@ You must be at least 18 years old, or the age of majority in your jurisdiction, 
 
 ## 3. Your account
 
-You are responsible for the information you enter, for keeping your password secure, and for all activity under your account. Notify us promptly at hrofiyani@gmail.com if you suspect unauthorized access.
+You are responsible for the information you enter, for keeping your password secure, and for all activity under your account. Notify us promptly at rinciku@katzeapps.com if you suspect unauthorized access.
 
 ## 4. AI guidance is not financial advice
 
@@ -57,4 +57,4 @@ We may update these Terms from time to time. When we do, we will revise the effe
 
 ## 13. Contact
 
-Questions about these Terms? Contact us at hrofiyani@gmail.com.
+Questions about these Terms? Contact us at rinciku@katzeapps.com.

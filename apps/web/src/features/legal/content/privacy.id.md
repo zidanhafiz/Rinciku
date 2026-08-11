@@ -44,7 +44,7 @@ Kami menyimpan data Anda selama akun Anda aktif. Saat Anda menghapus akun, kami 
 
 ## 7. Hak Anda
 
-Sesuai hukum yang berlaku, Anda berhak mengakses, memperbaiki, mengekspor, atau menghapus data pribadi Anda, serta menarik persetujuan. Anda dapat menghapus akun beserta seluruh datanya sendiri kapan saja melalui Pengaturan → Hapus akun. Untuk menggunakan hak lainnya, atau jika Anda memerlukan bantuan, hubungi kami di hrofiyani@gmail.com.
+Sesuai hukum yang berlaku, Anda berhak mengakses, memperbaiki, mengekspor, atau menghapus data pribadi Anda, serta menarik persetujuan. Anda dapat menghapus akun beserta seluruh datanya sendiri kapan saja melalui Pengaturan → Hapus akun. Untuk menggunakan hak lainnya, atau jika Anda memerlukan bantuan, hubungi kami di rinciku@katzeapps.com.
 
 ## 8. Anak-anak
 
@@ -60,4 +60,4 @@ Kami dapat memperbarui Kebijakan ini dari waktu ke waktu. Bila kami melakukannya
 
 ## 11. Kontak
 
-Ada pertanyaan tentang Kebijakan ini, atau ingin menggunakan hak data Anda? Hubungi kami di hrofiyani@gmail.com.
+Ada pertanyaan tentang Kebijakan ini, atau ingin menggunakan hak data Anda? Hubungi kami di rinciku@katzeapps.com.
